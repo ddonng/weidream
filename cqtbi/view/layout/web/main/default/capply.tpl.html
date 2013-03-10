@@ -1,0 +1,95 @@
+<div class="alert alert-block">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>注意!</h4>
+	
+</div>
+
+<form method="post" action="/?a=add_project" class="form-horizontal" id="add_project_form">
+<div class="control-group">
+    <label class="control-label" for="category">教改课程类别：</label>
+	<div class="controls">
+		<select id="category" name="category">
+			<?php foreach($qlty_course_category as $k=>$v): ?>
+			<option value="<?=$k ?>"><?=$v ?></option>
+			<?php endforeach;?>
+		</select>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="course_name">课程名称：</label>
+	<div class="controls">
+		<input type="text" name="course_name" id="course_name" placeholder="请输入课程名称" class="span6" />
+		<span class="help-inline">请不要添加《》符号</span>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label">课程隶属：</label>
+	<div class="controls">
+		<label class="radio">
+		  <input type="radio" name="belong_cqdd" id="optionsRadios1" value="0" checked>高职
+		</label>
+		<label class="radio">
+		  <input type="radio" name="belong_cqdd" id="optionsRadios2" value="1">电大
+		</label>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="rank">课程级别：</label>
+	<div class="controls">
+		<select id="rank" name="rank">
+			<?php foreach($qlty_rank as $k=>$v): ?>
+			<option value="<?=$k ?>"><?=$v ?></option>
+			<?php endforeach;?>
+		</select>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="specialty">所属科类：</label>
+	<div class="controls">
+		<select id="specialty" name="specialty">
+			<?php foreach($qlty_specity as $k=>$v): ?>
+			<option value="<?=$k ?>"><?=$v ?></option>
+			<?php endforeach;?>
+		</select>
+		<span class="help-inline">若不能确定具体小类，请选择其中的大类</span>	
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="funds">申请经费(万元)：</label>
+	<div class="controls">
+		<input type="text" name="funds" id="funds" placeholder="输入经费" class="span2" />
+		<span class="help-inline">格式如：0.3</span>		
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="research_year">研究时限(年)：</label>
+	<div class="controls">
+		<input type="text" name="research_year" id="research_year" value="2" class="span2" readonly="true"/>
+		<span class="help-inline">研究年限限制为2年，如需修改请联系项目科</span>		
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="achievement">具体成果与形式</label>
+	<div class="controls">
+		<textarea rows="8" id="achievement" name="achievement" class="span8" ></textarea>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="course_experiment">对本课程的教授经历</label>
+	<div class="controls">
+		<textarea rows="8" id="course_experience" name="course_experience" class="span8" ></textarea>
+		<input type="hidden" name="project_type" value="kc"/>
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls">
+		<div class="form_notice" id="form_add_project_form_notice"></div>
+	</div>
+</div>
+
+<div class="control-group">
+	<div class="controls">
+		<input type="button" value="确认提交" id="level_add_btn" class="btn btn-large btn-primary" onclick="send_form_in('add_project_form');"/>
+	</div>
+</div>
+</form>

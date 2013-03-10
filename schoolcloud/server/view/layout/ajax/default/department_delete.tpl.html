@@ -1,0 +1,12 @@
+<div class="alert alert-error">
+<h4>注意，只有当此部门中没有教师时，才能删除成功!</h4>
+</div>
+<form action="/server/?a=department_dodelete" class="form-inline"  id="department_delete_form" method="post">
+Department id：<label class="btn-success">"<?=$department_id?>"</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Is inside school：<label class="btn-success">"<?=$is_inside_school?>"</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Department name：<label class="btn-success">"<?=$department_name?>"</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input name="department_id" value="<?=$department_id?>" type="hidden" />
+	<input name="is_inside_school" value="<?=$is_inside_school?>" type="hidden" />
+	<input name="department_name" value="<?=$department_name?>" type="hidden" /><br><br>
+	<input type="button" value="确认删除" class="btn btn-danger offset4" onclick="send_form_in('department_delete_form');"/>
+</form>

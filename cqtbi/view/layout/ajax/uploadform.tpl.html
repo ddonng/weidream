@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+    <title><?=$top_title . ' | ' . c('site_name') ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" >
+<?php if( isset($css) && is_array( $css ) ): ?>
+        <?php foreach( $css as $cfile ): ?><link rel="stylesheet" type="text/css" href="/static/css/<?=$cfile?>">
+        <?php endforeach; ?>
+<?php endif; ?>
+
+<script type="text/javascript">
+var swfu;
+window.onload = function() {
+	var settings = {
+		flash_url : "static/swf/swfupload.swf",
+		upload_url: "http://static.cqtbi.esch.cn:8080/upload.php",
+		post_params: {
+			"type" :"<?=$asset_type;?>" ,
+			"sys" : "<?=$category;?>",
+			"pid" : "<?=$pid; ?>",
+			"weisecret":"<?=$encrypt_str;?>"
+		},
+		file_size_limit : "2 MB",
+		file_types : "<?=$filetype;?>",
+		file_types_description : "All Files",
+		file_upload_limit : 1,
+		file_queue_limit : 1,
+		custom_settings : {
+			progressTarget : "fsUploadProgress1",
+			cancelButtonId : "btnCancel1"
+		},
+		debug: false,
+
+		// Button settings
+		button_image_url: "static/image/btn-object-upload-160x44.png",
+		button_width: "160",
+		button_height: "44",
+		button_placeholder_id: "spanButtonPlaceHolder",
+		button_text: '<span class="upload_button_font">上传文件</span>',
+		button_text_style: ".upload_button_font{text-align:center;color:#ffffff;}",
+		//button_text_left_padding: 12,
+		button_text_top_padding: 10,
+		<?php if($disabled_btn):?>
+		button_disabled:true,
+		<?php endif;?>
+		
+		// The event handler functions are defined in handlers.js
+		file_queued_handler : fileQueued,
+		file_queue_error_handler : fileQueueError,
+		file_dialog_complete_handler : fileDialogComplete,
+		upload_start_handler : uploadStart,
+		upload_progress_handler : uploadProgress,
+		upload_error_handler : uploadError,
+		upload_success_handler : uploadSuccess,
+		upload_complete_handler : uploadComplete,
+		queue_complete_handler : queueComplete	// Queue plugin event
+	};
+
+	swfu = new SWFUpload(settings);
+ };
+</script>
+<!--[if lt IE 9]>
+      <script src="static/script/html5.js"></script>
+<![endif]-->
+<!--[if IE 6]>    
+    		<link href="static/css/ie6.min.css" rel="stylesheet">
+<![endif]-->
+
+</head>    
+<body>
+	<div class="offset2">
+			<span id="spanButtonPlaceHolder"></span>
+			<input id="btnCancel1" type="hidden" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled"/>
+	</div>
+
+	<div>
+			<div class="fieldset flash" id="fsUploadProgress1">
+				<span class="legend">上传进度显示</span>
+			</div>
+	</div>
+	<div class="alert-block">
+		<b>重要提示：</b><span id="divStatus" class="label label-important">文件大小最大为2M！选择后会直接上传，请上传前一定确认！！</span><br>
+
+	</div>
+
+
+    <!--<script src="http://lib.sinaapp.com/js/jquery/1.8/jquery.min.js"></script>-->
+	<script src="/static/script/jquery.min.js"></script>
+    <script src="/static/script/bootstrap.min.js"></script>
+    <!--[if IE 6]>    
+    		 <script src="static/script/ie6.min.js"></script>
+	<![endif]-->
+    <script src="/static/script/app.js"></script>
+    
+    <?php if( isset($js) && is_array( $js ) ): ?>
+        <?php foreach( $js as $jfile ): ?><script type="text/javascript" src="/static/script/<?=$jfile;?>" ></script>
+        <?php endforeach; ?>
+	<?php endif; ?>
+   
+</body>
+</html>

@@ -1,0 +1,8 @@
+name: schoolcloud
+version: 1
+handle:
+  - rewrite: if (path ~ "api/(.+)/(.+)/(.*)") goto "/server/index.php?c=api&_table=$1&_interface=$2&$3"
+  - rewrite: if (path ~ "oauth/(.+)") goto "/server/index.php?c=oauth&a=$1&%{QUERY_STRING}"
+  - rewrite: if (path ~ "static/(.*)") goto "/server/static/$1"
+  - rewrite: if( path ~ "^/$" ) goto "/client/" 
+  - rewrite: if( !is_file() && !is_dir()  && path ~ "/(.*)" ) goto "/client/$1"

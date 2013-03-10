@@ -1,0 +1,43 @@
+<div class="alert alert-block">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>注意!</h4>
+	请确保PDF与WORD内容一致！请下载FlashPaper转换word为pdf后并上传。
+</div>
+
+<div class="row span10">
+<table class="table table-condensed table-hover">
+  <thead>
+	<tr>
+	  <th>文档名称</th>
+	  <th></th>
+	  <th>操作</th>
+	</tr>
+  </thead>
+  <tbody>
+
+<?php 
+for($i=1;$i<10;$i++):
+	if($qlty_asset_type[$asset_type_head.$i]!=="" && !is_null($qlty_asset_type[$asset_type_head.$i])):
+?>
+	<tr>
+	  <td><?=$qlty_asset_type[$asset_type_head.$i];?></td>
+	  <td>
+			<div class="fieldset flash" id="fsUploadProgress1">
+			</div>
+		</td>
+	  <td>
+			<div>
+				<?php if($status_arr[$i]==1):?>
+				文件已上传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)">删除待增加[特定用户特定时间有效]</a>
+				<?php else:?>
+				  <a href="javascript:show_float_iframe( '/?a=uploadform&qid=<?=$qlty_project_id;?>&atp=<?=$asset_type_head.$i;?>&an=<?=$qlty_asset_type[$asset_type_head.$i];?>','上传<?=$qlty_asset_type[$asset_type_head.$i];?>')">上传</a>	 
+				<?php endif;?>
+			</div>
+		</td>
+	</tr>
+<?php endif;  endfor;?>
+
+  </tbody>
+</table>
+</div>

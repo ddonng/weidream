@@ -1,0 +1,12 @@
+<div class="alert alert-error">
+<h4>注意，确定要删除？</h4>
+</div>
+<form action="/server/?a=level_dodelete" class="form-inline"  id="level_delete_form" method="post">
+Teacher_id：<label class="btn-success">"<?=$teacher_id?>"</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Client_name：<label class="btn-success">"<?=$client_name?>"</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+level：<label class="btn-success">"<?=$level?>"</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input name="client_name" value="<?=$client_name?>" type="hidden" />
+	<input name="teacher_id" value="<?=$teacher_id?>" type="hidden" />
+	<input name="level" value="<?=$level?>" type="hidden" />
+	<input type="button" value="确认删除" class="btn btn-danger" onclick="send_form_in('level_delete_form');"/>
+</form>

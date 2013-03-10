@@ -1,0 +1,33 @@
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>重要提示！</h4>
+	校内具体到了部门，分校不再细分
+</div>
+
+<div class="row span8 offset2">
+<table class="table table-condensed table-hover">
+  <thead>
+	<tr>
+	  <th>部门id（department_id）</th>
+	  <th>部门所属</th>
+	  <th>部门名称（department_name）</th>
+	  <th>操作</th>
+	</tr>
+  </thead>
+  <tbody>
+<?php if($departments):
+foreach($departments as $department): ?>
+	<tr>
+	  <td><?=$department['department_id'];?></td>
+	  <td><?php if($department['is_inside_school']): echo "校内"; else: echo "电大分校或校外"; endif;?></td>
+	  <td><?=$department['department_name'];?></td>
+	  <td>
+	  <a href="javascript:show_float_box( '/server/?a=department_modify&department_id=<?=$department['department_id'];?>&department_name=<?=$department['department_name'];?>&is_inside_school=<?=$department['is_inside_school']?>')">修改</a>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <a href="javascript:show_float_box( '/server/?a=department_delete&department_id=<?=$department['department_id'];?>&department_name=<?=$department['department_name'];?>&is_inside_school=<?=$department['is_inside_school']?>')">删除</a></td>
+	</tr>
+<?php endforeach; endif;?>
+  </tbody>
+</table>
+</div>
+<div class="row span2 offset5"><button class="btn btn-large" type="button" onclick="javascript:show_float_box( '/server/?a=department_add');">增加部门</button></div>

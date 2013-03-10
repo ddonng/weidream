@@ -1,0 +1,5 @@
+name: cqtbi
+version: 1
+handle:
+  - rewrite: if (path ~ "default/(.+)") goto "index.php?c=default&a=$1"
+  - rewrite: if (path ~ "oauth") goto "index.php?c=default&a=oauth&%{QUERY_STRING}"

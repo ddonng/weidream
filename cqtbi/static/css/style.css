@@ -1,0 +1,502 @@
+
+.content_box,.cbox
+{
+	padding:10px;
+}
+
+.form_notice
+{
+	padding:5px;
+	margin:5px;
+	margin-left:0px;
+	margin-top:0px;
+}
+
+.front-page h1
+{
+	margin-bottom: 10px;
+}
+
+#lp_pop_box
+{
+	position:absolute;
+	position:fixed;
+	width:400px;
+	background:rgba( 0 , 0 , 0 , 0.2 );
+	margin:auto;
+	top:200px;
+	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#lp_pop_container
+{
+	margin:10px;
+	min-height:200px;
+	height:100%;
+	
+	background: white; /* fallback for older/unsupporting browsers */  
+	background: -moz-linear-gradient(top, #eee, white 8%);   
+	background: -webkit-gradient(linear, 0 0, 0 8%, from(#eee), to(white));   
+	
+}
+
+.close
+{
+	float:right;
+	cursor:pointer;
+}
+
+.round5
+{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.x2
+{
+	line-height:200%;
+}
+
+.x1-5
+{
+	line-height:150%;
+}
+
+a
+{
+	color:#0066cc;
+	text-decoration:none;
+}
+
+a:hover
+{
+	text-decoration:underline;
+}
+
+body{
+	margin:0;
+	padding:0;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin-top: 20px;
+  margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+.navbar-wrapper .navbar {
+
+}
+
+/* Remove border and change up box shadow for more contrast */
+.navbar .navbar-inner {
+  border: 0;
+  -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+	 -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+		  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* Downsize the brand/project name a bit */
+.navbar .brand {
+  padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+  color:white;
+}
+
+/* Navbar links: increase padding for taller navbar */
+.navbar .nav > li > a {
+  padding: 15px 20px;
+}
+
+/* Offset the responsive button for proper vertical alignment */
+.navbar .btn-navbar {
+  margin-top: 10px;
+}
+
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 0px;
+}
+
+.carousel .container {
+  position: relative;
+  z-index: 9;
+}
+
+.carousel-control {
+  height: 80px;
+  margin-top: 0;
+  font-size: 120px;
+  text-shadow: 0 1px 1px rgba(0,0,0,.4);
+  background-color: transparent;
+  border: 0;
+}
+
+.carousel .item {
+  height: 500px;
+}
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+.carousel-caption {
+  background-color: transparent;
+  position: static;
+  max-width: 550px;
+  padding: 0 20px;
+  margin-top: 200px;
+}
+.carousel-caption h1,
+.carousel-caption .lead {
+  margin: 0;
+  line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,.4);
+  font-family:"隶书";
+}
+.carousel-caption .btn {
+  margin-top: 10px;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .span4 {
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .span4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+.featurette {
+  padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+  overflow: hidden; /* Vertically center images part 2: clear their floats. */
+}
+.featurette-image {
+  margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+}
+
+/* Give some space on the sides of the floated elements so text doesn't run right into it. */
+.featurette-image.pull-left {
+  margin-right: 40px;
+}
+.featurette-image.pull-right {
+  margin-left: 40px;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+@media (min-width: 980px) {
+	.login-box {
+		height: 0;
+		margin: 0 auto;
+		width: 286px;
+		zoom: 1;
+		z-index: 120;
+		position: absolute;
+		top: 120px;
+		right:100px;
+	}
+
+}
+
+@media (min-width: 481px) and (max-width: 979px) {
+
+  .container.navbar-wrapper {
+	margin-bottom: 0;
+	width: auto;
+  }
+  .navbar-inner {
+	border-radius: 0;
+	margin: -20px 0;
+  }
+
+  .carousel .item {
+	height: 500px;
+  }
+  .carousel img {
+	width: auto;
+	height: 500px;
+  }
+
+  .featurette {
+	height: auto;
+	padding: 0;
+  }
+  .featurette-image.pull-left,
+  .featurette-image.pull-right {
+	display: block;
+	float: none;
+	max-width: 40%;
+	margin: 0 auto 20px;
+  }
+	.login-box {
+	height: 0;
+	margin: 0 auto;
+	width: 206px;
+	zoom: 1;
+	z-index: 120;
+	position: absolute;
+	top: 120px;
+	right:70px;
+	}
+}
+
+
+@media (max-width: 480px) {
+
+  .navbar-inner {
+	margin: -20px;
+  }
+
+  .carousel {
+	margin-left: -20px;
+	margin-right: -20px;
+  }
+  .carousel .container {
+
+  }
+  .carousel .item {
+	height: 300px;
+  }
+  .carousel img {
+	height: 300px;
+  }
+  .carousel-caption {
+	width: 65%;
+	padding: 0 70px;
+	margin-top: 100px;
+  }
+  .carousel-caption h1 {
+	font-size: 30px;
+  }
+  .carousel-caption .lead,
+  .carousel-caption .btn {
+	font-size: 18px;
+  }
+
+  .marketing .span4 + .span4 {
+	margin-top: 40px;
+  }
+
+  .featurette-heading {
+	font-size: 30px;
+  }
+  .featurette .lead {
+	font-size: 18px;
+	line-height: 1.5;
+  }
+  .login-box {
+	width: 186px;
+	position: relative;
+	z-index: 0;
+	text-align:center;
+  }
+
+}
+/************************Login form****************/
+
+.ui-login-aside{
+	width: 284px;
+	overflow: hidden;
+	color: white;
+	background: rgba(0, 0, 0, 0.4);
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#66000000',EndColorStr='#66000000');
+}
+.ui-form {
+	position: relative;
+	overflow: hidden;
+}
+#form_login{
+	margin:0px;
+}
+.ui-form-title {
+	padding: 5px;
+	border-bottom: 1px solid #BBB;
+	margin: 5px 15px 5px;
+	position: relative;
+}
+.form-title {
+	font-size: 16px;
+}
+.ui-form-title #contact-link {
+	position: absolute;
+	right: 13px;
+	top: 10px;
+	z-index: 20;
+	color:white;
+	opacity: .6;
+}
+#form_form_login_notice {
+	margin: 10px auto 0 30px;
+	width: 192px;
+	padding: 0px;
+	line-height: 1.3;
+
+}
+.login-form-cnt {
+	position: relative;
+	padding: 10px 30px 10px 30px;
+}
+label.ui-form-label {
+	text-align: left;
+	height: auto;
+	line-height: 12px;
+	padding: 0;
+	display: block;
+	padding-bottom: 8px;
+	margin: 0;
+	width: auto;
+	float: none;
+	font-size:12px;
+}
+.ui-pwd{
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+.fm-link {
+	position: absolute;
+	top: -3px;
+	right: 0;
+	font-size:12px;
+}
+#forgetPsw{
+	color:white;
+	opacity: .6;
+}
+.logbtn{
+	display:block;
+	margin-top:15px;
+	margin-bottom:20px;
+}
+.login-help-cnt{
+	margin: 0;
+	padding: 0;
+}
+a.ui-button-reg {
+	color: #FA0;
+	font-size: 14px;
+	font-weight: 600;
+	margin-right:10px;
+}
+#uactive{
+	font-size:12px;
+	color:white;
+	opacity:0.6;
+}
+.img-circle{
+	width:100px;
+	height:100px;
+	overflow:hidden;
+}
+.content{
+	display:block;
+	margin-top:60px;
+}
+#footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 10px;
+	border-top: 1px solid #E5E5E5;
+	background-color: whiteSmoke;
+	margin-bottom:0px;
+}
+.work-item{
+	font-family:"黑体";
+}
+.pull-right {
+	float: right;
+}
+.navbar-text {
+	margin-bottom: 0;
+	line-height: 51px;
+	color: #777;
+}
+.navbar-link{
+	margin-right:10px;
+}
+
+.info-container{
+	margin-top:120px;
+	margin-bottom:130px;
+}
+
+.nav-header{
+	font-size:14px;
+}
+.reg_side{
+	margin-top:20px;
+}
+.reg_step{
+	margin-top:80px;	
+}
+.reg_step_num{
+	font-size:50px;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; }
+.ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+
+.icon-chevron-right {
+	float: right;
+	margin-top: 2px;
+	margin-right: -6px;
+	opacity: .25;
+}

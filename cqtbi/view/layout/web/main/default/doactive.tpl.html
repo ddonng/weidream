@@ -1,0 +1,27 @@
+<div class="alert alert-block alert-info">
+
+  <h3>提示！</h3>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br><br>
+<?php if($status==2):?>
+账户已激活，请不要重复操作!
+<?php elseif($status==1):?>
+账户激活成功！请<a href="/?a=login">重新登录</a>
+<?php elseif($status==3):?>
+链接已过期，请重新发送验证邮件，并及时激活账户
+<?php endif;?>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <?php if($status=='2'):?>
+  <a type="button" class="btn btn-large btn-primary offset8" href="/?a=active">没有收到邮件？点击重新发送</a>
+  <?php endif;?>
+</div>

@@ -1,0 +1,5 @@
+# rewrite
+RewriteEngine On
+RewriteRule ^.*?default/(.+) index.php?c=default&a=$1 [L]
+RewriteRule ^.*?oauth index.php?c=default&a=oauth&%{QUERY_STRING} [L]
+

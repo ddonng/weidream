@@ -1,0 +1,31 @@
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>重要提示！</h4>
+	这个还需要完善，下载全国完整的地名……甚至到乡镇
+</div>
+
+<div class="row span6 offset3">
+<table class="table table-condensed table-hover">
+  <thead>
+	<tr>
+	  <th>地名id（native_place_id）</th>
+	  <th>地名（native_place_name）</th>
+	  <th>操作</th>
+	</tr>
+  </thead>
+  <tbody>
+<?php if($native_places):
+foreach($native_places as $native_place): ?>
+	<tr>
+	  <td><?=$native_place['native_place_id'];?></td>
+	  <td><?=$native_place['native_place_name'];?></td>
+	  <td>
+	  <a href="javascript:show_float_box( '/server/?a=native_place_modify&native_place_id=<?=$native_place['native_place_id'];?>&native_place_name=<?=$native_place['native_place_name'];?>')">修改</a>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <a href="javascript:show_float_box( '/server/?a=native_place_delete&native_place_id=<?=$native_place['native_place_id'];?>&native_place_name=<?=$native_place['native_place_name'];?>')">删除</a></td>
+	</tr>
+<?php endforeach; endif;?>
+  </tbody>
+</table>
+</div>
+<div class="row span2 offset5"><button class="btn btn-large" type="button" onclick="javascript:show_float_box( '/server/?a=native_place_add');">增加地名</button></div>

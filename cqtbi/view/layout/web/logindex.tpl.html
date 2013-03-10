@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+    <title><?=$top_title . ' | ' . c('site_name') ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" >
+<?php if( isset($css) && is_array( $css ) ): ?>
+        <?php foreach( $css as $cfile ): ?><link rel="stylesheet" type="text/css" href="/static/css/<?=$cfile?>">
+        <?php endforeach; ?>
+<?php endif; ?>
+
+<!--[if lt IE 9]>
+      <script src="static/script/html5.js"></script>
+<![endif]-->
+<!--[if IE 6]>    
+    		<link href="static/css/ie6.min.css" rel="stylesheet">
+<![endif]-->
+</head>    
+<body>
+<!-- NAVBAR
+================================================== -->
+<div class="navbar-wrapper">
+  <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+  <div class="container">
+
+	<div class="navbar navbar-inverse">
+	  <div class="navbar-inner">
+		<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</a>
+		<a class="brand" href="#">质量工程信息系统</a>
+		<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+		<div class="nav-collapse collapse">
+		  <ul class="nav">
+			<li class="active"><a href="/">首页</a></li>
+			<li><a href="#about">手机版</a></li>
+			<li><a href="#contact">联系我们</a></li>
+			<!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多功能<b class="caret"></b></a>
+			  <ul class="dropdown-menu">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li class="divider"></li>
+				<li class="nav-header">Nav header</li>
+				<li><a href="#">Separated link</a></li>
+				<li><a href="#">One more separated link</a></li>
+			  </ul>
+			</li>
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div><!-- /.navbar-inner -->
+	</div><!-- /.navbar -->
+
+  </div> <!-- /.container -->
+</div><!-- /.navbar-wrapper -->
+
+
+
+<!-- Carousel
+================================================== -->
+<div id="myCarousel" class="carousel slide">
+  <div class="carousel-inner">
+	<div class="item active">
+	  <img src="/static/image/slide-01.jpg" alt="">
+	  <div class="container">
+		<div class="carousel-caption">
+		  <h1>系统用途</h1>
+		  <p class="lead">本系统主要用做教改课程、教改项目、教学团队等质量工程管理，对象为全体教职员工</p>
+		  <a class="btn btn-large btn-info" href="#">立即注册</a>
+		</div>
+	  </div>
+	</div>
+	<div class="item">
+	  <img src="static/image/slide-02.jpg" alt="">
+	  <div class="container">
+		<div class="carousel-caption">
+		  <h1>使用推荐浏览器</h1>
+		  <p class="lead">为了正常使用系统并获得更好的体验，强烈建议使用Google Chrome浏览器或Mozilla FireFox浏览器！</p>
+		  <a class="btn btn-large btn-info" href="#">下载Google Chrome浏览器</a>&nbsp;&nbsp;&nbsp;
+		  <a class="btn btn-large btn-info" href="#">下载Mozilla FireFox浏览器</a>
+		</div>
+	  </div>
+	</div>
+	<div class="item">
+	  <img src="static/image/slide-03.jpg" alt="">
+	  <div class="container">
+		<div class="carousel-caption">
+		  <h1>多终端便捷使用</h1>
+		  <p class="lead">可以下载iphone客户端或Android客户端安装，也可以从移动浏览器中访问。随时随地便捷使用</p>
+		  <a class="btn btn-large btn-info" href="#">下载iphone客户端</a>&nbsp;&nbsp;&nbsp;
+		  <a class="btn btn-large btn-info" href="#">下载Android客户端</a>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div><!-- /.carousel -->
+
+<!--Login Form Start-->
+<div class="login-box">
+	<div class="ui-login-aside">
+		<div class="ui_form">
+		<form action="?a=login_check" method="post" id="form_login">
+			<div class="ui-form-title">
+				<span class="form-title">用户登录</span>
+				<a title="点击联系项目科" id="contact-link" href="#myModal" role="button" data-toggle="modal" target="_blank">咨询项目科</a>
+			</div>
+			<div class="form_notice" id="form_form_login_notice"></div>
+			<div class="login-form-cnt">
+				<div class="ui-form-item">
+					<label class="ui-form-label">账户名：</label>
+					<input tabindex="1" type="text" name="email" id="email" placeholder="电子邮箱" />
+				</div>
+				<div class="ui-form-item ui-pwd">
+					<label class="ui-form-label">密码：</label>
+					<span class="fm-link">
+						<a id="forgetPsw" href="#" target="_blank">忘记登录密码？</a>
+					</span>
+					<input tabindex="2" type="password" id="password" name="password" placeholder="密码" />
+				</div>
+				<div class="logbtn">
+					<input type="button" id="sbtn" value="登录" onclick="send_form_in('form_login');" class="btn btn-large btn-block btn-primary" />
+				</div>
+				<p class="login-help-cnt">
+					<a href="/?a=register" class="ui-button-reg">新用户注册</a>
+					<a id="uactive" href="/?a=active">账户激活</a>
+				</p>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+
+<!----Login Form End -->
+
+
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+	<div class="span4 work-item">
+	  <img class="img-circle" src="/static/image/browser-icon-chrome.png">
+	  <h2>教改课程</h2>
+	  <p>教改课程包括校级教改课程、校级精品课程、市级教改课程、市级精品课程、国家级教改课程以及国家精品课程。</p>
+	  <!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
+	</div><!-- /.span4 -->
+	<div class="span4 work-item">
+	  <img class="img-circle" src="/static/image/browser-icon-chrome.png">
+	  <h2>教改项目</h2>
+	  <p>教改课程包括校级教改课程、校级精品课程、市级教改课程、市级精品课程、国家级教改课程以及国家精品课程。</p>
+	  <!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
+	</div><!-- /.span4 -->
+	<div class="span4 work-item">
+	  <img class="img-circle" src="/static/image/browser-icon-chrome.png">
+	  <h2>教学团队</h2>
+	  <p>教改课程包括校级教改课程、校级精品课程、市级教改课程、市级精品课程、国家级教改课程以及国家精品课程。</p>
+	  <!--<p><a class="btn" href="#">View details &raquo;</a></p>-->
+	</div><!-- /.span4 -->
+  </div><!-- /.row -->
+</div>
+
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+
+<?php @include_once( dirname(__FILE__) ) . DS . 'footer.tpl.html'; ?>
+     
+    
+    <!--<script src="http://lib.sinaapp.com/js/jquery/1.8/jquery.min.js"></script>-->
+	<script src="/static/script/jquery.min.js"></script>
+    <script src="/static/script/bootstrap.min.js"></script>
+    <!--[if IE 6]>    
+    		 <script src="static/script/ie6.min.js"></script>
+	<![endif]-->
+    <script src="/static/script/app.js"></script>
+    
+    <?php if( isset($js) && is_array( $js ) ): ?>
+        <?php foreach( $js as $jfile ): ?><script type="text/javascript" src="/static/script/<?=$jfile;?>" ></script>
+        <?php endforeach; ?>
+	<?php endif; ?>
+
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+</body>
+</html>

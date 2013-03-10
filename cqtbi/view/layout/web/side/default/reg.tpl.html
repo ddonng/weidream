@@ -1,0 +1,14 @@
+<div class="row affix offset1 reg_side">
+	<div class="row reg_step">
+		<span class="badge <?php if(g('a')=='register') echo 'badge-success';?> reg_step_num">1</span>
+		<span class="">录入您的基本信息</span>
+	</div>
+	<div class="row reg_step">
+		<span class="badge <?php if( g('a')=='vemail' || g('a')=='active' ) echo 'badge-success';?> reg_step_num">2</span>
+		<span class="">验证邮箱</span>
+	</div>
+	<div class="row reg_step">
+		<span class="badge <?php if(g('a')=='doactive') echo 'badge-success';?> reg_step_num">3</span>
+		<span class="">完成注册</span>
+	</div>
+</div>

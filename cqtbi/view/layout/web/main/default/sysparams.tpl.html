@@ -1,0 +1,23 @@
+<div class="alert alert-block">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>注意!</h4>
+  存储序列化数组，注意其中的顺序关联到了project，慎重修改！！
+  <br>2013-02-20此功能后续实现
+
+</div>
+
+<form method="post" action="/?a=update_sysparams" class="form-horizontal" id="update_sysparams_form">
+<?php foreach($qlty_options as $qlty_option):?>
+<div class="control-group">
+    <label class="control-label"><?=$qlty_option['qlty_option_name']?></label>
+	<div class="controls">
+		<textarea rows="10" id="<?=$qlty_option['qlty_option_name']?>" class="span8" ><?=$qlty_option['qlty_option_value']?></textarea>
+	</div>
+</div>
+<?php endforeach;?>
+<div class="control-group">
+	<div class="controls">
+		<input type="button" value="修改" id="level_add_btn" class="btn btn-large btn-primary" onclick="send_form_in('update_sysparams_form');"/>
+	</div>
+</div>
+</form>

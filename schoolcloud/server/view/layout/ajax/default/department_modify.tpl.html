@@ -1,0 +1,26 @@
+<div class="alert alert-error">
+	<h4>注意：暂时未做下拉限定，名称仅仅检查唯一性，还需人工避免一个部门多个名称</h4>
+</div>
+<form method="post" action="/server/?a=department_update" class="form-horizontal" id="department_update_form">
+<div class="control-group">
+    <label class="control-label">部门所属</label>
+	<div class="controls">
+		<select id="is_inside_school" name="is_inside_school">
+		  <option value="1" <?php if($is_inside_school):?>selected="true"<?php endif;?> >校内</option>
+		  <option value="0" <?php if(!$is_inside_school):?>selected="true"<?php endif;?>>电大分校或校外</option>
+		</select>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="department_name">部门名称</label>
+	<div class="controls">
+		<input name="department_name" id="department_name" type="text" value="<?=$department_name?>"/>
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls">
+		<input type="button" value="更新" id="level_add_btn" class="btn btn-large" onclick="send_form_in('department_update_form');"/>
+	</div>
+</div>
+<input type="hidden" name="department_id" value="<?=$department_id?>"/>
+</form>

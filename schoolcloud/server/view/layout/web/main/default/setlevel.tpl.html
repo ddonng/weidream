@@ -1,0 +1,40 @@
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>重要提示！</h4>
+  目前权限设置并不完善，在质量工程系统中仅仅是判断level值，但并不对应相应角色；
+  因此，这里设置的level其实承担了角色的含义；
+  如果没有在这里设置，默认level为0
+</div>
+<div class="row offset3">
+查询教师信息（仅用来快速查询teacher_id）：&nbsp;&nbsp;<input type="text" data-provide="typeahead" data-source='[<?php echo $ret;?>]' data-items="10" class="span3">
+</div>
+<div class="row span8 offset2">
+<table class="table table-condensed table-hover">
+  <thead>
+	<tr>
+	  <th>系统名称（Client Name）</th>
+	  <th>教师id（teacher_id）</th>
+	  <th>教师姓名</th>
+	  <th>教师工号</th>
+	  <th>权限值（level）</th>
+	  <th>操作</th>
+	</tr>
+  </thead>
+  <tbody>
+<?php foreach($level_table as $key): ?>
+	<tr>
+	  <td><?=$key['client_name'];?></td>
+	  <td><?=$key['teacher_id'];?></td>
+	  <td><?=$tinfo["'".$key['teacher_id']."'"]['teacher_name'];?></td>
+	  <td><?=$tinfo["'".$key['teacher_id']."'"]['staff_id'];?></td>
+	  <td><?=$key['level'];?></td>
+	  <td>
+	  <a href="javascript:show_float_box( '/server/?a=level_modify&client_name=<?php echo $key['client_name'];?>&teacher_id=<?php echo $key['teacher_id'];?>&level=<?php echo $key['level'];?>')">修改</a>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <a href="javascript:show_float_box( '/server/?a=level_delete&client_name=<?php echo $key['client_name'];?>&teacher_id=<?php echo $key['teacher_id'];?>&level=<?php echo $key['level'];?>')">删除</a></td>
+	</tr>
+<?php endforeach; ?>
+  </tbody>
+</table>
+</div>
+<div class="row span2 offset5"><button class="btn btn-large" type="button" onclick="javascript:show_float_box( '/server/?a=level_add');">增加管理者</button></div>

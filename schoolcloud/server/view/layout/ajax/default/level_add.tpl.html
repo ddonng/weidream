@@ -1,0 +1,40 @@
+<div class="alert alert-error">
+	<h4>注意：同一Client中同一teacher_id只允许含有一条记录。</h4>
+</div>
+<form method="post" action="/server/?a=level_doadd" class="form-horizontal" id="level_add_form">
+<div class="control-group">
+    <label class="control-label">Client_name：</label>
+	<div class="controls">
+		<select id="client_name" name="client_name">
+		<?php foreach($client_arr as $client): ?>
+		  <option><?=$client ?></option>
+		<?php endforeach;?>
+		</select>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="teacher_id">Teacher_id：</label>
+	<div class="controls">
+		<input name="teacher_id" id="teacher_id" type="text" />
+		<a id="check_link" href="javascript:checkid()">点击检查</a>
+		<div id="check_id"></div>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="level">Level值：</label>
+	<div class="controls">
+		<input name="level" id="level" type="text" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls">
+		<input type="button" value="确认增加" id="level_add_btn" class="btn btn-large" onclick="send_form_in('level_add_form');"/>
+	</div>
+</div>
+</form>
+<script>
+	function checkid(){
+		var teacher_id = $("#teacher_id").val();
+		$("#check_id").load('/server/?a=ajax_checkid');
+	}
+</script>

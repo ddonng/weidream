@@ -1,0 +1,157 @@
+<div class="alert alert-block">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>注意!</h4>
+  为了保证您能够正常使用本系统，请确保信息真实有效！
+</div>
+<form method="post" action="/?a=doreg" class="form-horizontal" id="register_form">
+<div class="control-group">
+    <label class="control-label" for="email">Email：</label>
+	<div class="controls">
+		<input name="email" id="email" type="text" placeholder="您的常用邮箱" tabindex="1"/>
+		<span class="help-inline">推荐使用<a href="http://mail.163.com">163邮箱</a>、<a href="http://mail.qq.com">QQ邮箱</a></span>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="pwd">登录密码：</label>
+	<div class="controls">
+		<input name="pwd" id="pwd" type="password" placeholder="请输入密码" tabindex="2"/>
+		<span class="help-inline">不少于8位</span>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="pwd_again">确认密码：</label>
+	<div class="controls">
+		<input name="pwd_again" id="pwd_again" type="password" placeholder="再次输入密码" tabindex="3"/>
+	</div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">所属部门：</label>
+	<div class="controls">
+		<label class="radio">
+		  <input type="radio" name="school" id="optionsRadios1" value="1" checked>
+		  校本部
+		</label>
+		<select id="department1" name="department1">
+			<?php 
+				foreach($departments as $department): 
+				if($department['is_inside_school']=='1'):
+			?>
+			<option value="<?=$department['department_id']?>">
+			<?=$department['department_name'];?></option>
+			<?php endif; endforeach;?>
+		</select>
+		<input name="staff_id" type="text" placeholder="您的工号" class="span2"/>
+	</div>
+	<div class="controls">
+		<label class="radio">
+		  <input type="radio" name="school" id="optionsRadios2" value="2">
+		  电大分校或工作站
+		</label>
+		<select id="department2" name="department2">
+			<?php 
+				foreach($departments as $department): 
+				if($department['is_inside_school']=='0'):
+			?>
+			<option value="<?=$department['department_id']?>">
+			<?=$department['department_name'];?></option>
+			<?php endif; endforeach;?>
+		</select>
+	</div>
+	<div class="controls">
+		<label class="radio">
+		  <input type="radio" name="school" id="optionsRadios2" value="3">
+		  校外：
+		  <input name="schoolid" type="text" placeholder="学校代码" class="span3"/>
+		</label>
+		<span class="help-inline">若为校内，请填写工号；若为校外，请填写学校代码</span>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="teacher_name">姓名：</label>
+	<div class="controls">
+		<input name="teacher_name" id="teacher_name" type="text" placeholder="您的姓名"/>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label">性别：</label>
+	<div class="controls">
+		<label class="radio">
+		  <input type="radio" name="sex" id="optionsRadios1" value="0" checked>
+		  男
+		</label>
+		<label class="radio">
+		  <input type="radio" name="sex" id="optionsRadios2" value="1">
+		  女
+		</label>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label">民族：</label>
+	<div class="controls">
+		<select id="nation" name="nation">
+			<?php 
+				foreach($nations as $nation): 
+			?>
+			<option value="<?=$nation['nation_id']?>"><?=$nation['nation_name'];?></option>
+			<?php endforeach;?>
+		</select>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label">籍贯：</label>
+	<div class="controls">
+		<select id="native_place" name="native_place">
+			<?php 
+				foreach($native_places as $native_place): 
+			?>
+			<option value="<?=$native_place['native_place_id']?>"><?=$native_place['native_place_name'];?></option>
+			<?php endforeach;?>
+		</select>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="birthday">出生日期：</label>
+	<div class="controls">
+		<input name="birthday" id="birthday" type="text" placeholder="您的出生日期"/>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="start_work_time">入职时间：</label>
+	<div class="controls">
+		<input name="start_work_time" id="start_work_time" type="text" placeholder="您的入职时间"/>
+
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="mobile_phone">手机号码：</label>
+	<div class="controls">
+		<input name="mobile_phone" id="mobile_phone" type="text" placeholder="您的手机号码"/>
+		<span class="help-inline">非常重要！请务必准确！</span>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="office_phone">办公电话：</label>
+	<div class="controls">
+		<input name="office_phone" id="office_phone" type="text" placeholder="您的办公电话"/>
+		<span class="help-inline">格式如“023-42860000”</span>
+	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="captcha">验证码：</label>
+	<div class="controls">
+		<input name="captcha" class="span2" id="captcha" type="text" placeholder="验证码"/>
+		<img src="?a=showcaptcha" onClick="javascript:this.src='?a=showcaptcha&tm='+Math.random();" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls">
+		<div class="form_notice" id="form_register_form_notice"></div>
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls">
+		<input type="button" value="提交注册" id="level_add_btn" class="btn btn-large btn-primary" onclick="send_form_in('register_form');"/>
+	</div>
+</div>
+</form>

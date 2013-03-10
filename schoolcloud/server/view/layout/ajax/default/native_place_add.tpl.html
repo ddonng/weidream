@@ -1,0 +1,16 @@
+<div class="alert alert-error">
+	<h4>注意：暂时只写到市县</h4>
+</div>
+<form method="post" action="/server/?a=native_place_doadd" class="form-horizontal" id="native_place_add_form">
+<div class="control-group">
+    <label class="control-label" for="native_place_name">地名：</label>
+	<div class="controls">
+		<input name="native_place_name" id="native_place_name" type="text" />
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls">
+		<input type="button" value="确认增加" class="btn btn-large" onclick="send_form_in('native_place_add_form');"/>
+	</div>
+</div>
+</form>
