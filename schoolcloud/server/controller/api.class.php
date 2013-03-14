@@ -69,8 +69,8 @@ class apiController extends appController
 			return $this->send_error( LR_API_ARGS_ERROR , 'API NOT  AVAILABLE' );
 
 		if( $ainfo['public'] != 1 )
-			//改用Oauth2
-			$this->check_access_token();
+			//改用Oauth2，默认检查user_id
+			$this->check_access_token(true);
 		
 		$requires = array();
 		$inputs = array();
@@ -413,11 +413,11 @@ class apiController extends appController
 	
 	//check access_token
 
-	public function check_access_token()
+	private function check_access_token($need_user_id=false)
 	{
 		$oauth = parent::getOauth();
 		$token = $oauth->getBearerToken();
-		$result = $oauth->verifyAccessToken($token);
+		$result = $oauth->verifyAccessToken($token,$need_user_id);
 		if($token!=$result['oauth_token'])
 		{
 			return $this->send_error( LR_API_TOKEN_ERROR , $result );
@@ -462,8 +462,8 @@ class apiController extends appController
 	
 	public function get_general()
 	{
-		//Oauth2
-		$this->check_access_token();
+		//Oauth2,不需要user_id
+		$this->check_access_token(false);
 		$general =Array();
 		$general['department'] = kget_all_department();
 		$general['nation'] = kget_all_nation();

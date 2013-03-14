@@ -424,7 +424,7 @@ class OAuth2 {
 	 *
 	 * @ingroup oauth2_section_7
 	 */
-	public function verifyAccessToken($token_param, $scope = NULL) {
+	public function verifyAccessToken($token_param, $need_user_id=FALSE, $scope = NULL) {
 		$tokenType = $this->getVariable(self::CONFIG_TOKEN_TYPE);
 		$realm = $this->getVariable(self::CONFIG_WWW_REALM);
 		
@@ -450,6 +450,10 @@ class OAuth2 {
 		if (isset($token["expires"]) && time() > $token["expires"]) {
 			//throw new OAuth2AuthenticateException(self::HTTP_UNAUTHORIZED, $tokenType, $realm, self::ERROR_INVALID_GRANT, 'The access token provided has expired.', $scope);
 			return 'The access token provided has expired.';
+		}
+
+		if($need_user_id==true && ( is_null($token["user_id"]) || $token["user_id"]==0 )){
+			return 'access token for special user';
 		}
 		
 		// Check scope, if provided
@@ -700,9 +704,13 @@ class OAuth2 {
 					throw new OAuth2ServerException(self::HTTP_BAD_REQUEST, self::ERROR_REDIRECT_URI_MISMATCH, 'The redirect URI provided is missing or does not match');
 				}
 
-
+				//Invalid refresh token失效
 				if ($stored === NULL || $client[0] != $stored["client_id"]) {
-					throw new OAuth2ServerException(self::HTTP_BAD_REQUEST, self::ERROR_INVALID_GRANT, 'Invalid refresh token');
+					//这里需要返回一个参数好让介入客户端删除refresh_token的cookie重新认证
+					//throw new OAuth2ServerException(self::HTTP_BAD_REQUEST, self::ERROR_INVALID_GRANT, 'Invalid refresh token');
+					header("HTTP/1.1 " . self::HTTP_FOUND);
+					header("Location: " . $client_detail["redirect_uri"]."?nrefresh=gszy");
+					exit();
 				}
 				
 				if ($stored["expires"] < time()) {
@@ -1037,7 +1045,6 @@ class OAuth2 {
 			"token_type" => $this->getVariable(self::CONFIG_TOKEN_TYPE),
 			"scope" => $scope
 		);
-		
 		$this->storage->setAccessToken($token["access_token"], $client_id, $user_id, time() + $this->getVariable(self::CONFIG_ACCESS_LIFETIME), $scope);
 		
 		// Issue a refresh token also, if we support them

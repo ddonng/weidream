@@ -184,20 +184,28 @@ class defaultController extends appController
 	//接收返回的access_token与refresh_token等
 	public function oauth()
 	{
-		$access_token = z(t(v('access_token')));
-		$refresh_token = z(t(v('refresh_token')));
-		$expires_in = z(t(v('expires_in')));
-		$token_type = z(t(v('token_type')));
-		$scope = z(t(v('scope')));
-		$state = z(t(v('state')));
+		$need_refresh = z(t(v('nrefresh')));
+		if($need_refresh=="gszy")
+		{
+			setCOOKIE('atk'.$_SESSION['teacher']['teacher_id'],'',time()-43000);
+			setCOOKIE('rtk'.$_SESSION['teacher']['teacher_id'],'',time()-1209600);
+			return ajax_echo("请重新认证……<script>location = '/?a=authorize';</script>");
+		}else{
+			$access_token = z(t(v('access_token')));
+			$refresh_token = z(t(v('refresh_token')));
+			$expires_in = z(t(v('expires_in')));
+			$token_type = z(t(v('token_type')));
+			$scope = z(t(v('scope')));
+			$state = z(t(v('state')));
 
-		//scope、token_type、state之类的暂未处理
+			//scope、token_type、state之类的暂未处理
+			
+			setCOOKIE('atk'.$_SESSION['teacher']['teacher_id'],$access_token,time()+$expires_in-1200);
 
-		setCOOKIE('atk'.$_SESSION['teacher']['teacher_id'],$access_token,time()+$expires_in-200);
-
-		//14day，比odp提前一天
-		setCOOKIE('rtk'.$_SESSION['teacher']['teacher_id'],$refresh_token,time()+1209600);
-		return ajax_echo("<script>location = '/?a=index';</script>");
+			//14day，比odp提前一天
+			setCOOKIE('rtk'.$_SESSION['teacher']['teacher_id'],$refresh_token,time()+1209600);
+			return ajax_echo("<script>location = '/?a=index';</script>");
+		}
 	}
 
 	public function register()
@@ -385,7 +393,7 @@ class defaultController extends appController
 
 		$edudata=self::getEdudataInstance();
 		$status=$edudata->verify_email($code,$access_token);
-
+		//print_r($status);exit();
 		$data['status']=$status;
 		$data['title']=$data['top_title']="激活账户";
 		render($data,'','reg');

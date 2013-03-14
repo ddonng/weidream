@@ -51,37 +51,6 @@ Class edudata
 		return $access_token;
 	}
 
-	function verify()
-	{
-		$url = "teacher/verify/";
-		$params = array();
-		$params['email'] = $this->teacher_email;
-
-		//注意密码这里需要md5（也许能增强安全，再加上https）
-		$params['teacher_pwd'] = md5( $this->teacher_pwd );
-
-		//在这client（即项目管理子系统）的name
-		$params['client_name'] = c('client_name');
-
-
-		$result = $this->mycurl->post($url,$params);
-		return $result;
-	}
-
-	function general_data()
-	{
-		//注册用户时需要
-		$url = "general/get/";
-		$access_token=self::refresh_client_access_token();
-
-		$params = Array();
-
-		$params['access_token']=$access_token;
-
-		$result = $this->mycurl->post($url,$params);
-		return $result;
-	}
-	
 	function get_client_access_token()
 	{
 		//grant_type:client_credentials
@@ -94,6 +63,52 @@ Class edudata
 		return $result;
 	}
 
+	//特定user的access token
+	function get_user_access_token()
+	{
+		//如果access token过期
+		if(IS_NULL($_COOKIE['atk'.$_SESSION['teacher']['teacher_id']]) || !isset($_COOKIE['atk'.$_SESSION['teacher']['teacher_id']]))
+		{
+			//待处理
+			
+		}else{
+			$access_token=$_COOKIE['atk'.$_SESSION['teacher']['teacher_id']];
+			return $access_token;
+		}
+	
+	}
+
+	function verify()
+	{
+		$url = "teacher/verify/";
+		$params = array();
+		$params['email'] = $this->teacher_email;
+
+		//注意密码这里需要md5（也许能增强安全，再加上https）
+		$params['teacher_pwd'] = md5( $this->teacher_pwd );
+
+		//在这client（即项目管理子系统）的name
+		$params['client_name'] = c('client_name');
+
+		$result = $this->mycurl->post($url,$params);
+		return $result;
+	}
+
+	function general_data()
+	{
+		//注册用户时需要
+		//注册使用的access_token无user_id
+		$url = "general/get/";
+		$access_token=self::refresh_client_access_token();
+		$params = Array();
+
+		$params['access_token']=$access_token;
+
+		$result = $this->mycurl->post($url,$params);
+
+		return $result;
+	}
+	
 	function add_teacher($teacher_infos)
 	{
 		$url = "odp_teacher/insert/";
@@ -153,7 +168,7 @@ Class edudata
 			$result_update=$this->mycurl->post($url,$arr);
 
 			if($result_update['err_code']=='0') 
-				return (self::update_kvdb_status($email))?true:false;
+				return (self::update_kvdb_status($email))?1:0;
 
 		}else if($result['err_code']=='0' && $result['data']['items'][0]['is_email_verified']=='1')
 		{
@@ -203,7 +218,7 @@ Class edudata
 	function get_qlty_option()
 	{
 		$url="qlty_option/list/";
-		$access_token = self::refresh_client_access_token();
+		$access_token = self::get_user_access_token();
 		$params=Array();
 		$params['access_token'] = $access_token;
 
@@ -218,11 +233,12 @@ Class edudata
 	function add_qlty_project($params)
 	{
 		$url="qlty_project/insert/";
-		$access_token = self::refresh_client_access_token();
+		$access_token = self::get_user_access_token();
+
 		$params = $params + Array('access_token'=>$access_token);
 
 		$result = $this->mycurl->post($url,$params);
-
+		//print_r($result);exit();
 		return ($result['err_code']=='0')?$result['data'][0]['qlty_project_id']:false;
 
 	}
@@ -230,7 +246,7 @@ Class edudata
 	function add_qlty_project_asset($params)
 	{
 		$url="qlty_asset/insert/";
-		$access_token = self::refresh_client_access_token();
+		$access_token = self::get_user_access_token();
 		$params = $params + Array('access_token'=>$access_token);
 		$result = $this->mycurl->post($url,$params);
 
@@ -240,7 +256,7 @@ Class edudata
 	function get_qlty_asset_status($pid,$tid)
 	{
 		$url="qlty_asset/status/";
-		$access_token = self::refresh_client_access_token();
+		$access_token = self::get_user_access_token();
 		$params = Array(
 			'access_token'=>$access_token,
 			'pid'=>$pid,
