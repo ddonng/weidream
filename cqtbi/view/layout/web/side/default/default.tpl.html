@@ -14,12 +14,12 @@
 	<li class="divider"></li>
   <li class="nav-header">常用功能</li>
   <li <?php if(g('a')=='index'):?> class="active" <?php endif;?> ><a href="/?a=index"><i class="icon-chevron-right"></i>个人信息</a></li>
-  <li><a href="#"><i class="icon-chevron-right"></i>修改密码</a></li>
+  <li <?php if(g('a')=='updatepwd'):?> class="active" <?php endif;?> ><a href="/?a=updatepwd"><i class="icon-chevron-right"></i>修改密码</a></li>
   <li><a href="#"><i class="icon-chevron-right"></i>Library</a></li>
 
 <li class="divider"></li>
   <li class="nav-header">教改课程</li>
-  <li><a href="#"><i class="icon-chevron-right"></i>我的教改课程</a></li>
+  <li <?php if(g('a')=='mycourse'):?> class="active" <?php endif;?> ><a href="/?a=mycourse"><i class="icon-chevron-right"></i>我的教改课程</a></li>
   <li <?php if(g('a')=='capply'):?> class="active" <?php endif;?> ><a href="/?a=capply"><i class="icon-chevron-right"></i>申报教改课程</a></li>
   <li><a href="#"><i class="icon-chevron-right"></i>Library</a></li>
 

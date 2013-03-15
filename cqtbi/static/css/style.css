@@ -228,7 +228,16 @@ body{
   letter-spacing: -1px;
 }
 
-
+.login-box {
+	height: 0;
+	margin: 0 auto;
+	width: 286px;
+	zoom: 1;
+	z-index: 120;
+	position: absolute;
+	top: 120px;
+	right:150px;
+}
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
@@ -241,7 +250,7 @@ body{
 		z-index: 120;
 		position: absolute;
 		top: 120px;
-		right:100px;
+		right:150px;
 	}
 
 }

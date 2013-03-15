@@ -393,7 +393,7 @@ class defaultController extends appController
 
 		$edudata=self::getEdudataInstance();
 		$status=$edudata->verify_email($code,$access_token);
-		//print_r($status);exit();
+
 		$data['status']=$status;
 		$data['title']=$data['top_title']="激活账户";
 		render($data,'','reg');
@@ -436,6 +436,36 @@ class defaultController extends appController
 
 		}
 
+	}
+		
+	public function updatepwd()
+	{
+	
+		$data['title']=$data['top_title']="修改密码";
+		render($data);
+		
+	}
+
+	public function doupdatepwd()
+	{
+		$oldpwd=z(t(v("oldpwd")));
+		$newpwd=z(t(v("newpwd")));
+		$pwd_again=z(t(v("pwd_again")));
+		
+		if($oldpwd=="" || $newpwd=="" || $pwd_again=="") return ajax_echo("不能有空");
+		if($newpwd!==$pwd_again) return ajax_echo("两次输入的新密码需要相同！");
+
+		if(!preg_match("/^[0-9a-zA-Z]{8,20}$/",$newpwd)) return ajax_echo("新密码只能为字母或数字，长度为8到20位");
+
+		$edudata=self::getEdudataInstance();
+		$result = $edudata->update_pwd($newpwd,$oldpwd,$_SESSION['teacher']['teacher_id']);
+
+		if($result===true){
+			return ajax_echo("修改密码成功……<script>location = '/?a=logout';</script>");}
+		if($result==='invalidpwd'){
+			return ajax_echo("旧密码输入错误！");}
+		if($result===false){
+			return ajax_echo("发生错误，修改密码不成功");}
 	}
 
 	public function sysparams()
@@ -674,6 +704,13 @@ class defaultController extends appController
 
 	//}else{die("Bad Request");}
 
+	}
+
+	public function mycourse()
+	{
+	
+		$data['title']=$data['top_title']="课程项目状态";
+		render($data);
 	}
 
 }

@@ -38,6 +38,7 @@ Class edudata
 	public function refresh_client_access_token()
 	{
 		$access_token=$_COOKIE['atk'];
+		//setCOOKIE('atk',$access_token,time()+$expires_in-200);
 		if($access_token==""){
 
 			$result=self::get_client_access_token();
@@ -202,6 +203,7 @@ Class edudata
 		$url_rekset="odp_teacher/rekset/";
 		$arr=Array();
 		$arr['access_token']=self::refresh_client_access_token();
+
 		$arr['email']=$email;
 		$result=$this->mycurl->post($url_rekset,$arr);
 
@@ -265,6 +267,28 @@ Class edudata
 		$result = $this->mycurl->post($url,$params);
 
 		return ($result['err_code']=='0')?$result['data']:false;
+	}
+
+	function update_pwd($newpwd,$oldpwd,$tid)
+	{
+		$url="odp_teacher/update/";
+		//我把密码返回了，我好垃圾……暂时这样，bug慢慢补了
+
+		if( (md5($oldpwd)) != $_SESSION['teacher']['teacher_pwd'] ){
+			return 'invalidpwd';
+		}else{
+			$access_token = self::get_user_access_token();
+			$params = Array(
+				'access_token'=>$access_token,
+				'teacher_pwd'=>md5($newpwd),
+				'teacher_id'=>$tid
+			);
+			$status = $this->mycurl->post($url,$params);
+			if($status['err_code']=='0'){
+				//需要更新teacher的缓存
+				return self::update_kvdb_status($_SESSION['teacher']['email']);
+			}
+		}
 	}
 
 }
